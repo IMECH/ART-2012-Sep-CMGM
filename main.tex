@@ -1,0 +1,96 @@
+\documentclass{beamer} % blue; brown; gray; red;
+\usepackage{beamerthemesplit}
+\usepackage{beamerthemeshadow}
+\usepackage{animate}
+\usepackage{movie15}
+%\usepackage[numbered]{mcode}
+\usepackage{graphics}
+\usepackage{colortbl}
+\usepackage{pgf,pgfarrows,pgfnodes,pgfautomata,pgfheaps}
+\usepackage{amsmath,amssymb}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{xeCJK}
+\usepackage{fontspec}
+\setCJKmainfont[BoldFont=simhei.ttf]{simkai.ttf}
+%\setCJKsansfont{simhei.ttf}
+%\setCJKmonofont{simfang.ttf}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usetheme{Warsaw}
+%别的主题:Bergen,Boadilla,Madrid,AnnArbor,CambridgeUS,Pittsburgh, Rochester.
+%有导航栏:Antibes,JuanLesPins,Montpellier,
+%有内容的:Berkeley,PaloAlto,% Goettingen,Marburg,Hannover
+%小导航栏:Berlin,Ilmenau,Dresden,Darmstadt, Frankfurt,Singapore,Szeged,
+%章节表单:Copenhagen,Luebeck,Malmoe,Warsaw
+\beamertemplateshadingbackground{red!10}{structure!10}
+\beamertemplatesolidbackgroundcolor{white!90!blue}
+\beamertemplatetransparentcovereddynamic
+\beamertemplateballitem
+\beamertemplatenumberedballsectiontoc
+%\beamertemplatelargetitlepage
+\beamertemplateboldpartpage
+
+\usecolortheme{sidebartab}
+%beetle,crane,dove,fly,seagull,wolverine,beaver
+\renewcommand{\raggedright}{\leftskip=0pt \rightskip=0pt plus 0cm}
+\raggedright
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\graphicspath{{figures/}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\makeatletter
+\usefoottemplate{ %重新定义页脚，加入作者，单位，单位图标，和文档标题
+  \vbox{\tiny%
+    \hbox{%
+      \setbox\beamer@linebox=\hbox to\paperwidth{%
+        \hbox to.5\paperwidth{
+            \hfill\tiny\color{white}
+                  \textbf{\insertshortauthor\quad\insertshortinstitute}
+            \hskip .1cm\lower 0.2em\hbox{\includegraphics[height=0.25cm]{./figures/CAS.pdf}}
+            \hskip.3cm}%
+        \hbox to.5\paperwidth{
+            \hskip.3cm\tiny\color{white}
+                  \textbf{\insertshorttitle}\hfill}\hfill}%
+      \ht\beamer@linebox=2.625ex%
+      \dp\beamer@linebox=0pt%
+      \setbox\beamer@linebox=\vbox{\box\beamer@linebox\vskip1.125ex}%
+      \color{structure}\hskip-\Gm@lmargin\vrule width.5\paperwidth
+      height\ht\beamer@linebox\color{structure!70}\vrule width.5\paperwidth
+      height\ht\beamer@linebox\hskip-\paperwidth%
+      \hbox{\box\beamer@linebox\hfill}\hfill\hskip-\Gm@rmargin}
+  }
+}
+\makeatother
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+\title{细胞吸入微管道的耗散粒子动力学(DPD)模拟}
+\subtitle{2012颗粒材料计算力学会议~~张家界}
+\institute[中国科学院力学研究所]{中国科学院力学研究所}
+\author{周吕文 \and 刘谋斌}
+\date{2012年09月21日}
+
+\pgfdeclaremask{zhou}{./Logo/CAS.pdf}
+\pgfdeclareimage[mask=zhou,height=2.5cm]{zhou}{./figures/CAS.pdf}
+\titlegraphic{\pgfuseimage{zhou}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\frame[plain]{\titlepage} % 产生主题页，plain选项表示不显示页眉页脚等内容
+\titlegraphic{\pgfuseimage{title}}
+\AtBeginSection[]{ % 在每个Section前都会加入的Frame
+  \frame<handout:0>{
+    \frametitle{提纲}
+    \tableofcontents[current,currentsubsection]
+  }
+}
+\frame[Outline]{\frametitle{提纲}\tableofcontents}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{./sections/introduction}
+\input{./sections/applications}
+
+\input{./sections/thebibliography}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{./sections/thankyou}
+\end{document}
